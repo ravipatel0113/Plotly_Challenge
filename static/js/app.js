@@ -11,6 +11,8 @@ var barchart = d3.select('#bar');
 
 var gaugechart = d3.select('#gauge');
 
+var gaugechart2 = d3.select('#gauge2');
+
 var bubblechart = d3.select('#bubble');
 
 //const datapromise = d3.json(data);
@@ -22,6 +24,7 @@ function cleardata(){
     metadata.html('');
     barchart.html('');
     gaugechart.html('');
+    gaugechart2.html('');
     bubblechart.html('');
 };
 
@@ -147,7 +150,7 @@ function plotcharts(id){
         }];
         bubbleplot(bubbletrace);
 
-        var gaugechart = [{
+        var chartgauge = [{
             domain: {x: [0,1],
             y: [0,1]},
             value: washfreq,
@@ -197,7 +200,9 @@ function plotcharts(id){
                     }
         };
 
-        Plotly.newPlot('gauge', gaugechart, layoutgauge);
+        gaugeplot(chartgauge, layoutgauge);
+
+        
     }));
     
 
@@ -212,6 +217,11 @@ function barplot(layout, bardata )
 function bubbleplot(bubbledata)
 {
     Plotly.newPlot('bubble', bubbledata);
+}
+
+function gaugeplot(trace, layout)
+{
+    Plotly.newPlot('gauge',trace,layout);
 }
 
 function optionChanged(id){
